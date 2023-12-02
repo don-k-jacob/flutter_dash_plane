@@ -1,0 +1,1 @@
+enum PlaneMovement {middle,up,down}
