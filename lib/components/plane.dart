@@ -57,6 +57,7 @@ class FlyPlane extends SpriteGroupComponent<PlaneMovement>
   }
 
   void GameOver() {
+    gameRef.overlays.add('gameOver');
     gameRef.pauseEngine();
   }
 

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dash_plane/game/assets.dart';
 import 'package:flutter_dash_plane/game/dash_plane_game.dart';
 
-class MainMenuScreen extends StatelessWidget {
+class gameOverScreen extends StatelessWidget {
   final DashPlaneGame game;
-  static const id = 'mainMenu';
-  const MainMenuScreen({super.key, required this.game});
+  static const id = 'gameOver';
+  const gameOverScreen({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class MainMenuScreen extends StatelessWidget {
         )),
         child: GestureDetector(
           onTap: () {
-            game.overlays.remove('mainMenu');
+            game.overlays.remove('gameOver');
             game.resumeEngine();
           },
-          child: Image.asset(Assets.startNow),
+          child: Image.asset(Assets.gameOver),
         ),
       ),
     );

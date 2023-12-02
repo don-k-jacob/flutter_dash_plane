@@ -9,6 +9,9 @@ void main() {
   runApp(GameWidget(
     game: game,
     initialActiveOverlays: const [MainMenuScreen.id],
-    overlayBuilderMap: {'mainMenu': (context, _) => MainMenuScreen(game: game)},
+    overlayBuilderMap: {
+      'mainMenu': (context, _) => MainMenuScreen(game: game),
+      'gameOver': (context, _) => GameWidget(game: game)
+    },
   ));
 }

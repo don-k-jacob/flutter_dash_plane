@@ -10,4 +10,9 @@ class Assets {
   static const treeDown = 'treeDown.png';
 
   static const menu = 'assets/images/menu.png';
+  
+  static const startNow = 'assets/images/start.png';
+  static const gameOver = 'assets/images/gameOver.png';
+
+
 }
