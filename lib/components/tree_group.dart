@@ -9,14 +9,14 @@ import 'package:flutter_dash_plane/game/tree_position.dart';
 
 import 'tree.dart';
 
-class TreeGroup extends PositionComponent with HasGameRef<DashPlane> {
+class TreeGroup extends PositionComponent with HasGameRef<DashPlaneGame> {
   TreeGroup();
   final _random = Random();
   @override
   FutureOr<void> onLoad() async {
     position.x = gameRef.size.x;
 
-    final hightMinusGround = gameRef.size.y - 0;
+    final hightMinusGround = gameRef.size.y - Config.groundHeight;
     final spacing = 100 + _random.nextDouble() * (hightMinusGround / 4);
     final centerY =
         spacing + _random.nextDouble() * (hightMinusGround - spacing);
@@ -30,6 +30,7 @@ class TreeGroup extends PositionComponent with HasGameRef<DashPlane> {
         height: hightMinusGround - (centerY + spacing / 2),
       ),
     ]);
+
     return super.onLoad();
   }
 

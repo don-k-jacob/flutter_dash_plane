@@ -1,5 +1,6 @@
 class Assets {
   static const background = 'background.png';
+  static const ground = 'ground.png';
 
   static const dashPlaneUp = 'planeUp.png';
   static const dashPlaneMid = 'planeMid.png';
@@ -8,4 +9,5 @@ class Assets {
   static const treeUp = 'treeUp.png';
   static const treeDown = 'treeDown.png';
 
+  static const menu = 'assets/images/menu.png';
 }

@@ -1,12 +1,15 @@
 import 'dart:async';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter_dash_plane/game/assets.dart';
 import 'package:flutter_dash_plane/game/dash_plane_game.dart';
 import 'package:flutter_dash_plane/game/tree_position.dart';
 
-class Tree extends SpriteComponent with HasGameRef<DashPlane> {
+import '../game/configuration.dart';
+
+class Tree extends SpriteComponent with HasGameRef<DashPlaneGame> {
   Tree({
     required this.treePosition,
     required this.height,
@@ -21,7 +24,7 @@ class Tree extends SpriteComponent with HasGameRef<DashPlane> {
     size = Vector2(50, height);
     switch (treePosition) {
       case TreePosition.bottom:
-        position.y = gameRef.size.y - size.y;
+        position.y = gameRef.size.y - size.y - Config.groundHeight;
         sprite = Sprite(tree);
         break;
       case TreePosition.top:
@@ -29,6 +32,8 @@ class Tree extends SpriteComponent with HasGameRef<DashPlane> {
         sprite = Sprite(treeRotated);
         break;
     }
+    add(RectangleHitbox());
+
     return super.onLoad();
   }
 }

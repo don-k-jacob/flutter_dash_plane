@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/animation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_dash_plane/game/assets.dart';
 import 'package:flutter_dash_plane/game/configuration.dart';
 import 'package:flutter_dash_plane/game/dash_plane_game.dart';
@@ -10,7 +12,7 @@ import 'package:flutter_dash_plane/game/dash_plane_game.dart';
 import '../game/plane_movement.dart';
 
 class FlyPlane extends SpriteGroupComponent<PlaneMovement>
-    with HasGameRef<DashPlane> {
+    with HasGameRef<DashPlaneGame>, CollisionCallbacks {
   FlyPlane();
 
   @override
@@ -27,12 +29,12 @@ class FlyPlane extends SpriteGroupComponent<PlaneMovement>
       PlaneMovement.middle: planeMid,
       PlaneMovement.down: planeDown
     };
+    add(CircleHitbox());
 
     return super.onLoad();
   }
 
   void fly() {
-
     add(MoveByEffect(
       Vector2(0, Config.throtil),
       EffectController(
@@ -42,7 +44,20 @@ class FlyPlane extends SpriteGroupComponent<PlaneMovement>
       onComplete: () => PlaneMovement.up,
     ));
     current = PlaneMovement.down;
+  }
 
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
+    debugPrint("Collision Dectected");
+    GameOver();
+  }
+
+  void GameOver() {
+    gameRef.pauseEngine();
   }
 
   @override
