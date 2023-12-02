@@ -56,8 +56,13 @@ class FlyPlane extends SpriteGroupComponent<PlaneMovement>
     GameOver();
   }
 
+  void reset() {
+    position = Vector2(50, gameRef.size.y / 2 - size.y / 2);
+  }
+
   void GameOver() {
     gameRef.overlays.add('gameOver');
+
     gameRef.pauseEngine();
   }
 
