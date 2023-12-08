@@ -29,7 +29,7 @@ class FlyPlane extends SpriteGroupComponent<PlaneMovement>
       PlaneMovement.middle: planeMid,
       PlaneMovement.down: planeDown
     };
-    add(CircleHitbox());
+    add(CircleHitbox(radius: 30));
 
     return super.onLoad();
   }
