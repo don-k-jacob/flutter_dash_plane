@@ -16,27 +16,55 @@ class GameOverScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage(
-          Assets.gameOver,
-        ),
-      )),
+      // decoration: BoxDecoration(
+      //     image: DecorationImage(
+      //   image: AssetImage(
+      //     Assets.gameOver,
+      //   ),
+      // )
+      // ),
       child: GestureDetector(
-        onTap: () {
-          game.plane.reset();
-          game.score = 0;
-          game.removeWhere((c) => c is TreeGroup);
-          game.resumeEngine();
-          game.overlays.remove('gameOver');
-        },
+        onTap: () {},
         child: Center(
-            child: Text(
-          "Your Score is ${game.score}",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 30,
-          ),
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset(
+              Assets.gameOver,
+              width: MediaQuery.of(context).size.width / 1.5,
+            ),
+            Text(
+              "Your Score is ${game.score}",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 50,
+              ),
+            ),
+            SizedBox(
+              height: 50,
+              width: MediaQuery.of(context).size.width / 2,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: const MaterialStatePropertyAll(
+                      Color(0xff085A8D),
+                    ),
+                  ),
+                  onPressed: () {
+                    game.plane.reset();
+                    game.score = 0;
+                    game.removeWhere((c) => c is TreeGroup);
+                    game.resumeEngine();
+                    game.overlays.remove('gameOver');
+                  },
+                  child: Text(
+                    "Restart",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  )),
+            )
+          ],
         )),
       ),
     );
